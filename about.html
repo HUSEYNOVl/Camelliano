@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compressed Sofa - Haqqımızda</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Scroll Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Model Viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #0156fe; /* Slate Gray */
+      --primary-dark: #ffffff; /* Darker Slate */
+      --secondary: #000000; /* Light Gray */
+      --dark: #ffffff; /* Dark Slate */
+      --light: #F9FAFB; /* Off-White */
+      --gray: #0b59e0; /* Cool Gray */
+      --light-gray: #316ae6; /* Soft Gray */
+      --success: #10B981; /* Emerald Green */
+      --warning: #F59E0B; /* Amber */
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      transition: var(--transition);
+    }
+
+    body.light-mode {
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(26, 26, 46, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      transition: transform var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--light);
+      font-size: 16px;
+      font-weight: 500;
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    body.light-mode .nav-links li a {
+      color: var(--dark);
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: var(--success);
+      transition: width var(--transition);
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links li a:hover {
+      color: var(--success);
+    }
+
+    /* Toggle Bar */
+    .toggle-bar {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+    }
+
+    .toggle-bar button {
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 20px;
+      border: none;
+      background: var(--primary);
+      color: var(--light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .toggle-bar button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 120px 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--light);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 22px;
+      color: var(--light-gray);
+      max-width: 800px;
+      margin: auto;
+    }
+
+    /* General Section */
+    .section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      color: var(--success);
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+
+    /* Certificates Section */
+    .certificates {
+      background: var(--dark);
+      text-align: center;
+    }
+
+    body.light-mode .certificates {
+      background: var(--light);
+    }
+
+    .certificates img {
+      width: 120px;
+      margin: 15px;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+
+    .certificates img:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .certificates p {
+      font-size: 18px;
+      color: var(--gray);
+      margin: 20px 0;
+    }
+
+    /* Showroom Section */
+    .showroom {
+      background: var(--dark);
+    }
+
+    body.light-mode .showroom {
+      background: var(--light);
+    }
+
+    .showroom img {
+      width: 200px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .showroom img:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .map {
+      width: 100%;
+      height: 450px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin-top: 30px;
+    }
+
+    /* Team Section */
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
+
+    .team-member {
+      background: var(--dark);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      overflow: hidden;
+      position: relative;
+    }
+
+    body.light-mode .team-member {
+      background: var(--light-gray);
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      transition: var(--transition);
+    }
+
+    .team-member:hover img {
+      transform: scale(1.1);
+    }
+
+    .team-member h3 {
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .team-member p {
+      font-size: 16px;
+      color: var(--gray);
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background: var(--dark);
+      text-align: center;
+    }
+
+    body.light-mode .testimonials {
+      background: var(--light);
+    }
+
+    .testimonials img {
+      width: 150px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .testimonials blockquote {
+      font-size: 20px;
+      font-style: italic;
+      color: var(--light-gray);
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    .counter {
+      font-size: 24px;
+      color: var(--success);
+      font-weight: 500;
+      margin-top: 20px;
+    }
+
+    /* Video Section */
+    .video-section {
+      background: var(--dark);
+      text-align: center;
+    }
+
+    body.light-mode .video-section {
+      background: var(--light);
+    }
+
+    .video-section iframe {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--success);
+      color: var(--dark);
+      padding: 15px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .whatsapp-button:hover {
+      transform: translateY(-5px);
+      background: var(--primary);
+      color: var(--light);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 80px 20px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .team-member {
+        width: 100%;
+      }
+
+      .map {
+        height: 300px;
+      }
+
+      .video-section iframe {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-bar">
+    <button onclick="changeLanguage('az')">AZ</button>
+    <button onclick="changeLanguage('en')">EN</button>
+    <button onclick="changeLanguage('ru')">RU</button>
+    <button onclick="toggleDarkMode()">🌓</button>
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">CompressedSofa</div>
+    <ul class="nav-links" id="nav-links"></ul>
+  </nav>
+
+  <section class="hero" data-aos="fade-up">
+    <h1>Haqqımızda</h1>
+    <p>Smart, yığıla bilən mebellər istehsal edən, müasir və etibarlı brendik.</p>
+  </section>
+
+  <section class="section certificates" data-aos="fade-up">
+    <h2>✅ Təsdiqlənmiş Biznes</h2>
+    <div>
+      <img src="images/certificate.jpg" alt="Certificate" loading="lazy">
+      <img src="images/norton.png" alt="Norton" loading="lazy">
+      <img src="images/ssl.png" alt="SSL" loading="lazy">
+      <img src="images/moneyback.png" alt="Money Back" loading="lazy">
+    </div>
+    <p>VÖEN: 958-456-712 • Qeydiyyat: 2023 • Home Design Expo qalibi</p>
+  </section>
+
+  <section class="section showroom" data-aos="fade-up">
+    <h2>📍 Şorum ofisimiz</h2>
+    <img src="images/showroom.jpg" alt="Showroom" loading="lazy">
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6747014901514!2d106.68943157588303!3d10.759917259442286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3c1499ad81%3A0x91f41d64c41e59cf!2sVincom%20Center%20Dong%20Khoi!5e0!3m2!1sen!2s!4v1647777777777" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <section class="section" data-aos="fade-up">
+    <h2>👥 Komandamız</h2>
+    <div class="team">
+      <div class="team-member">
+        <img src="images/ali.jpg" alt="Ali" loading="lazy">
+        <h3>Ali</h3>
+        <p>Marketinq – Yaradıcı kampaniyaların arxasındakı sosial media idarecimiz</p>
+      </div>
+      <div class="team-member">
+        <img src="images/sabina.jpg" alt="Sabina" loading="lazy">
+        <h3>Sabina</h3>
+        <p>Sahibə – CompressedSofa-nın təsisçisi və yenilikçi lideri</p>
+      </div>
+      <div class="team-member">
+        <img src="images/emin.jpg" alt="Emin" loading="lazy">
+        <h3>Emin</h3>
+        <p>Satış – Müştərilər üçün ideal divanı tapmağa kömək edir</p>
+      </div>
+      <div class="team-member">
+        <img src="images/sarkhan.jpg" alt="Sarkhan" loading="lazy">
+        <h3>Sarkhan</h3>
+        <p>Kargo – Çatdırılma prosesini hər bölgəyə vaxtında təmin edir</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials" data-aos="fade-up">
+    <h2>💬 Müştəri Rəyləri</h2>
+    <img src="images/customer.jpg" alt="Customer Photo" loading="lazy">
+    <blockquote>“Möhtəşəm keyfiyyət! Divanım studiyamda çox şık görünür. Çatdırılma sürətli və qablaşdırma əla idi.”<br>— Aysel, Bakı 🇦🇿</blockquote>
+    <div class="counter" data-count="125">💚 0 Məmnun Müştəri</div>
+  </section>
+
+  <section class="section video-section" data-aos="fade-up">
+    <h2>🎥 Kamera Arxasında</h2>
+    <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allowfullscreen loading="lazy"></iframe>
+  </section>
+
+  <a href="https://wa.me/994501234567" class="whatsapp-button" target="_blank">
+    <span>💬 WhatsApp ilə əlaqə</span>
+  </a>
+
+  <script>
+    const email = localStorage.getItem('email');
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+
+    if (!isLoggedIn) {
+      alert('Əvvəlcə daxil olun.');
+      window.location.href = 'login.html';
+    } else {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.innerHTML = `
+        <li><a href="index.html">Ana Səhifə</a></li>
+        <li><a href="products.html">Məhsullar</a></li>
+        <li><a href="about.html">Haqqımızda</a></li>
+        <li><a href="#" onclick="logout()">Çıxış</a></li>
+      `;
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      localStorage.removeItem('email');
+      window.location.href = 'login.html';
+    }
+
+    function changeLanguage(lang) {
+      alert('Hazırda çoxdilli məzmun hazırlanır. Bu funksionallıq tezliklə aktiv olacaq.');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('light-mode');
+    }
+
+    // Counter Animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const counter = document.querySelector('.counter');
+      const finalCount = parseInt(counter.getAttribute('data-count'));
+      let count = 0;
+      const duration = 2000;
+      const step = finalCount / (duration / 16);
+
+      const updateCounter = () => {
+        count += step;
+        if (count >= finalCount) {
+          count = finalCount;
+          clearInterval(counterInterval);
+        }
+        counter.textContent = `💚 ${Math.round(count)} Məmnun Müştəri`;
+      };
+
+      const counterInterval = setInterval(updateCounter, 16);
+    });
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>

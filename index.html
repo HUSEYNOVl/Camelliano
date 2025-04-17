@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camelliano - Premium Yığılan Divanlar</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    :root {
+      --primary: #3051c7;
+      --primary-dark: #d3bc58;
+      --secondary: #484848;
+      --light: #F7F7F7;
+      --dark: #121212;
+      --accent: #FFD166;
+      --text: #333333;
+      --text-light: #767676;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background-color: var(--light);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+    
+    /* Navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 5%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+    
+    .navbar.scrolled {
+      padding: 15px 5%;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo i {
+      margin-right: 10px;
+      font-size: 24px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-size: 16px;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    .nav-links li a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-links li a:hover:after {
+      width: 100%;
+    }
+    
+    .nav-links li a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .nav-actions .btn-outline {
+      padding: 10px 20px;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: 50px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .nav-actions .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--secondary);
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 180px 5% 100px;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,90,95,0.1) 0%, rgba(255,90,95,0.05) 100%);
+      z-index: -1;
+      border-radius: 0 0 0 100px;
+    }
+    
+    .hero-text {
+      max-width: 45%;
+    }
+    
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+    
+    .hero-subtitle i {
+      margin-right: 10px;
+    }
+    
+    .hero-title {
+      font-size: 64px;
+      line-height: 1.2;
+      margin-bottom: 25px;
+      color: var(--dark);
+    }
+    
+    .hero-title span {
+      color: var(--primary);
+    }
+    
+    .hero-description {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 40px;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .btn {
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: 2px solid var(--primary);
+      box-shadow: 0 10px 20px rgba(255, 90, 95, 0.3);
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(190, 176, 85, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 90, 95, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .hero-model {
+      width: 50%;
+      height: 600px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      transform-style: preserve-3d;
+    }
+    
+    .hero-model::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+      pointer-events: none;
+    }
+    
+    .hero-model model-viewer {
+      width: 100%;
+      height: 100%;
+      --poster-color: transparent;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 120px 5%;
+      background: white;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .section-subtitle::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .section-title {
+      font-size: 48px;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    
+    .section-description {
+      font-size: 18px;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 90, 95, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: var(--primary);
+      font-size: 32px;
+    }
+    
+    .feature-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .feature-description {
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    
+    /* Video Section */
+    .video-section {
+      padding: 120px 5%;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .video-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/pattern.png') repeat;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    
+    .video-section .section-title {
+      color: white;
+    }
+    
+    .video-section .section-description {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .video-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 60px auto 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      transform: translateZ(0);
+    }
+    
+    .video-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,90,95,0.3) 0%, rgba(255,90,95,0) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .video-container video {
+      width: 100%;
+      display: block;
+      position: relative;
+      z-index: 0;
+    }
+    
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(255, 90, 95, 0.5);
+    }
+    
+    .play-button:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 15px 40px rgba(255, 90, 95, 0.7);
+    }
+    
+    .play-button i {
+      color: white;
+      font-size: 24px;
+      margin-left: 5px;
+    }
+    
+    /* Products Section */
+    .products {
+      padding: 120px 5%;
+      background: white;
+    }
+    
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+    
+    .products-header .section-header {
+      text-align: left;
+      margin-bottom: 0;
+      max-width: 500px;
+    }
+    
+    .view-all {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .view-all:hover {
+      color: var(--primary-dark);
+      transform: translateX(5px);
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 2;
+    }
+    
+    .product-media {
+      height: 300px;
+      position: relative;
+      background: #f9f9f9;
+    }
+    
+    .product-media model-viewer {
+      width: 100%;
+      height: 100%;
+      --poster-color: transparent;
+    }
+    
+    .product-info {
+      padding: 25px;
+    }
+    
+    .product-title {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .product-description {
+      font-size: 15px;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    .product-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .product-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light);
+      color: var(--text);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .product-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* About Section */
+    .about {
+      padding: 120px 5%;
+      background: linear-gradient(135deg, #f9f9f9 0%, #e4e7eb 100%);
+      position: relative;
+    }
+    
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .about-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .about-content {
+      flex: 1;
+    }
+    
+    .about-content .section-header {
+      text-align: left;
+      margin-bottom: 40px;
+    }
+    
+    .about-text {
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .stat-label {
+      font-size: 16px;
+      color: var(--text-light);
+    }
+    
+    /* Newsletter */
+    .newsletter {
+      padding: 80px 5%;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+    }
+    
+    .newsletter-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .newsletter .section-title {
+      color: white;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 40px auto 0;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .newsletter-input {
+      flex: 1;
+      padding: 18px 25px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+    }
+    
+    .newsletter-button {
+      padding: 0 30px;
+      background: var(--dark);
+      color: white;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-button:hover {
+      background: #000;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 80px 5% 40px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .footer-description {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .footer-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 15px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .hero-title {
+        font-size: 54px;
+      }
+      
+      .hero-model {
+        height: 500px;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+        padding-top: 150px;
+        text-align: center;
+      }
+      
+      .hero::before {
+        width: 100%;
+        height: 50%;
+        top: auto;
+        bottom: 0;
+        border-radius: 100px 100px 0 0;
+      }
+      
+      .hero-text {
+        max-width: 100%;
+        margin-bottom: 60px;
+      }
+      
+      .hero-cta {
+        justify-content: center;
+      }
+      
+      .hero-model {
+        width: 80%;
+      }
+      
+      .about-container {
+        flex-direction: column;
+      }
+      
+      .about-image {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links, .nav-actions {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .hero-title {
+        font-size: 42px;
+      }
+      
+      .hero-model {
+        width: 100%;
+        height: 400px;
+      }
+      
+      .section-title {
+        font-size: 36px;
+      }
+      
+      .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      
+      .products-header .section-header {
+        text-align: left;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero {
+        padding: 130px 5% 80px;
+      }
+      
+      .hero-title {
+        font-size: 36px;
+      }
+      
+      .hero-description {
+        font-size: 16px;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .section-title {
+        font-size: 32px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        border-radius: 12px;
+      }
+      
+      .newsletter-button {
+        padding: 15px;
+      }
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* 3D Model Styling */
+    model-viewer {
+      --progress-bar-color: var(--primary);
+      --progress-bar-height: 3px;
+      --progress-mask: transparent;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="logo">
+      <i class="fas fa-couch"></i> Camelliano
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Ana Səhifə</a></li>
+      <li><a href="products.html">Məhsullar</a></li>
+      <li><a href="about.html">Haqqımızda</a></li>
+      <li><a href="contact.html">Əlaqə</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-outline">Daxil ol</a>
+    </div>
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text" data-aos="fade-right">
+      <p class="hero-subtitle">
+        <i class="fas fa-star"></i> Premium Yığılan Divanlar
+      </p>
+      <h1 class="hero-title">
+        Məkanınızı <span>Yenidən Kəşf Edin</span>
+      </h1>
+      <p class="hero-description">
+        Camelliano yığılan divanları ilə məkanınıza çeviklik və şıxlıq qatın. Minimalist dizayn, maksimum rahatlıq və yerə qənaət edən həllər.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="window.location.href='products.html'">
+          <i class="fas fa-shopping-bag"></i> Məhsullara Bax
+        </button>
+        <button class="btn btn-secondary" onclick="window.location.href='about.html'">
+          <i class="fas fa-play"></i> Video Bax
+        </button>
+      </div>
+    </div>
+    <div class="hero-model floating" data-aos="fade-left">
+      <model-viewer src="models/sofa.glb" alt="3D Sofa" ar auto-rotate camera-controls shadow-intensity="1" exposure="0.8" environment-image="neutral"></model-viewer>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="section-header" data-aos="fade-up">
+      <p class="section-subtitle">Niyə Camelliano?</p>
+      <h2 class="section-title">Üstünlüklərimiz</h2>
+      <p class="section-description">
+        Müasir həyat tərzinizə uyğun hazırlanmış divanlarımızla rahatlıq və şıxlığı birləşdirin.
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-icon">
+          <i class="fas fa-expand"></i>
+        </div>
+        <h3 class="feature-title">Yerə Qənaət</h3>
+        <p class="feature-description">
+          Kiçik məkanlar üçün ideal dizayn. Bir düymə ilə yığılaraq 2 dəfə çox yer yaradın.
+        </p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-icon">
+          <i class="fas fa-gem"></i>
+        </div>
+        <h3 class="feature-title">Premium Material</h3>
+        <p class="feature-description">
+          Yüksək keyfiyyətli, davamlı və asan təmizlənən materiallar istifadə olunur.
+        </p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-icon">
+          <i class="fas fa-palette"></i>
+        </div>
+        <h3 class="feature-title">Fərdi Dizayn</h3>
+        <p class="feature-description">
+          100-dən çox rəng və material seçimi ilə öz stilinizi yaradın.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="section-header" data-aos="fade-up">
+      <p class="section-subtitle">İzləyin</p>
+      <h2 class="section-title">Camelliano Təcrübəsi</h2>
+      <p class="section-description">
+        Divanlarımızın rahatlığını və funksionallığını videomuzda kəşf edin.
+      </p>
+    </div>
+    <div class="video-container" data-aos="fade-up" data-aos-delay="200">
+      <video poster="images/video-poster.jpg" controls>
+        <source src="videos/sofa-demo.mp4" type="video/mp4" />
+        Sizin brauzeriniz videonu dəstəkləmir.
+      </video>
+      <div class="play-button">
+        <i class="fas fa-play"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products">
+    <div class="products-header" data-aos="fade-up">
+      <div class="section-header">
+        <p class="section-subtitle">Məhsullar</p>
+        <h2 class="section-title">Popular Modellər</h2>
+      </div>
+      <a href="products.html" class="view-all">
+        Hamısına bax <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="product-badge">Yeni</div>
+        <div class="product-media">
+          <model-viewer src="models/sofa-classic.glb" alt="Classic Sofa" ar auto-rotate camera-controls shadow-intensity="1" exposure="0.8"></model-viewer>
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Roll Sofa Classic</h3>
+          <p class="product-description">
+            Klassik dizayn və müasir rahatlığın harmoniyası. Minimalistlər üçün ideal seçim.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">$199</div>
+            <div class="product-actions">
+              <button class="product-btn">
+                <i class="fas fa-heart"></i>
+              </button>
+              <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="product-badge">Ən çox satılan</div>
+        <div class="product-media">
+          <model-viewer src="models/sofa-modern.glb" alt="Modern Sofa" ar auto-rotate camera-controls shadow-intensity="1" exposure="0.8"></model-viewer>
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Smart Fold Sofa</h3>
+          <p class="product-description">
+            İntelligent yığılma sistemi və ergonomik dizayn. Rahatlıq və funksionallıq bir arada.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">$249</div>
+            <div class="product-actions">
+              <button class="product-btn">
+                <i class="fas fa-heart"></i>
+              </button>
+              <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="product-media">
+          <model-viewer src="models/sofa-luxury.glb" alt="Luxury Sofa" ar auto-rotate camera-controls shadow-intensity="1" exposure="0.8"></model-viewer>
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Luxury Edition</h3>
+          <p class="product-description">
+            Premium dəri və unikal dizayn. Ən təntənəli məkanlar üçün eksklüziv həll.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">$399</div>
+            <div class="product-actions">
+              <button class="product-btn">
+                <i class="fas fa-heart"></i>
+              </button>
+              <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-container">
+      <div class="about-image" data-aos="fade-right">
+        <img src="images/about-showroom.jpg" alt="Camelliano Showroom">
+      </div>
+      <div class="about-content" data-aos="fade-left">
+        <div class="section-header">
+          <p class="section-subtitle">Haqqımızda</p>
+          <h2 class="section-title">Camelliano Hekayəsi</h2>
+        </div>
+        <p class="about-text">
+          2015-ci ildə qurulan Camelliano, müasir şəhər həyatının ehtiyaclarına cavab verən innovativ mebel həlləri yaradır. Biz rahatlıq, funksionallıq və estetik gözəlliyi bir arada təqdim edirik.
+        </p>
+        <p class="about-text">
+          Hər bir məhsulumuz diqqətlə hazırlanır və yalnız ən yüksək keyfiyyətli materiallardan istifadə olunur. Müştəri məmnuniyyəti bizim üçün ən vacib prioritetdir.
+        </p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">5000+</div>
+            <div class="stat-label">Xoşbəxt Müştəri</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">12</div
+              <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Şourum və Filial</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Newsletter Section -->
+      <section class="newsletter">
+        <div class="newsletter-container" data-aos="fade-up">
+          <h2 class="section-title">Yeniliklərdən Xəbərdar Olun</h2>
+          <p class="section-description">Ən son kampaniyalar və məhsullar haqqında məlumat almaq üçün e-poçtunuzu qeyd edin.</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="E-poçt adresiniz" required />
+            <button type="submit" class="newsletter-button">Qeyd Olun</button>
+          </form>
+        </div>
+      </section>
+    
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">Camelliano</div>
+            <p class="footer-description">
+              Kompakt və şıx dizaynlı yığılan divanlarla məkanınıza dəyər qatın.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer-title">Şirkət</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">Haqqımızda</a></li>
+              <li><a href="contact.html">Əlaqə</a></li>
+              <li><a href="products.html">Məhsullar</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-title">Dəstək</h4>
+            <ul class="footer-links">
+              <li><a href="#">Tez-tez verilən suallar</a></li>
+              <li><a href="#">Çatdırılma</a></li>
+              <li><a href="#">Zəmanət</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2025 Camelliano. Bütün hüquqlar qorunur.
+        </div>
+      </footer>
+    
+      <!-- AOS JS -->
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+        AOS.init();
+        // Scroll navbar shrink effect
+        window.addEventListener('scroll', () => {
+          const navbar = document.getElementById('navbar');
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+      </script>
+    </body>
+    </html>
+    
